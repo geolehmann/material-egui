@@ -21,7 +21,11 @@ material-colors = { version = "0.4.2" }
 #egui = { git = "https://github.com/emilk/egui", branch = "master" }
 #eframe = { git = "https://github.com/emilk/egui", branch = "master" }
 egui = "0.30"
-eframe = "0.30"
+eframe = { version = "0.30", default-features = false, features = [
+    "default_fonts",
+    "wgpu",
+    "persistence",
+] }
 material-egui = {path = "."}
 dotenv = "0.15.0"
 
