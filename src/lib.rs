@@ -3,7 +3,7 @@ pub use widgets::button::Button;
 
 use egui::style::{Selection, WidgetVisuals, Widgets};
 use egui::{epaint, Color32, Context, Stroke, Style, Ui, Visuals};
-use material_colors::Argb;
+use material_colors::color::Argb;
 use std::str::FromStr;
 
 #[derive(Clone, Default, Debug)]
@@ -71,10 +71,9 @@ impl MaterialColors {
         self.clone()
     }
     pub fn new(base_color: String, dark: bool, zoom: f32) -> Self {
-        let data = material_colors::theme_from_source_color(
-            Argb::from_str(&base_color).unwrap(),
-            Default::default(),
-        );
+        let data = material_colors::theme::ThemeBuilder::with_source(
+            Argb::from_str(&base_color).unwrap()
+        ).build();
 
         let scheme = match dark {
             true => data.schemes.dark,
